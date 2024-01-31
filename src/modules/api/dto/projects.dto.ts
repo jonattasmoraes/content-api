@@ -1,4 +1,4 @@
-export type ProjectDTO = {
+export type ProjectsDTO = {
   id?: number;
   name: string;
   year: string;
