@@ -164,38 +164,38 @@ describe('ProjectsService', () => {
     ).rejects.toThrowErrorMatchingSnapshot('not found');
   });
 
-  // describe('delete', () => {
-  //   it('should delete content with a given id', async () => {
-  //     prismaServiceMock.apiProjects.findUnique.mockResolvedValue({
-  //       id: 1,
-  //       name: 'Project 1',
-  //       year: '2022',
-  //       urlIcon: 'https://example.com/icon.png',
-  //       aboutProject: 'Project 1 description',
-  //       infos: 'Project 1 infos',
-  //       repositoryUrl: 'https://example.com/repository',
-  //       deployUrl: 'https://example.com/deploy',
-  //     });
+  describe('delete', () => {
+    it('should delete content with a given id', async () => {
+      prismaServiceMock.apiProjects.findUnique.mockResolvedValue({
+        id: 1,
+        name: 'Project 1',
+        year: '2022',
+        urlIcon: 'https://example.com/icon.png',
+        aboutProject: 'Project 1 description',
+        infos: 'Project 1 infos',
+        repositoryUrl: 'https://example.com/repository',
+        deployUrl: 'https://example.com/deploy',
+      });
 
-  //     prismaServiceMock.apiProjects.delete.mockResolvedValue({ id: '1' });
+      prismaServiceMock.apiProjects.delete.mockResolvedValue({ id: '1' });
 
-  //     const result = await projectService.delete(1);
+      const result = await projectService.delete(1);
 
-  //     expect(result).toEqual({ id: '1' });
-  //     expect(prismaServiceMock.apiProjects.findUnique).toHaveBeenCalledWith({
-  //       where: { id: 1 },
-  //     });
-  //     expect(prismaServiceMock.apiProjects.delete).toHaveBeenCalledWith({
-  //       where: { id: 1 },
-  //     });
-  //   });
+      expect(result).toEqual({ id: '1' });
+      expect(prismaServiceMock.apiProjects.findUnique).toHaveBeenCalledWith({
+        where: { id: 1 },
+      });
+      expect(prismaServiceMock.apiProjects.delete).toHaveBeenCalledWith({
+        where: { id: 1 },
+      });
+    });
 
-  //   it('should throw NotFoundException when content is not found', async () => {
-  //     prismaServiceMock.apiProjects.findUnique.mockResolvedValue(null);
+    it('should throw NotFoundException when content is not found', async () => {
+      prismaServiceMock.apiProjects.findUnique.mockResolvedValue(null);
 
-  //     await expect(projectService.delete(1)).rejects.toThrowError(
-  //       NotFoundException,
-  //     );
-  //   });
-  // });
+      await expect(projectService.delete(1)).rejects.toThrowError(
+        NotFoundException,
+      );
+    });
+  });
 });
