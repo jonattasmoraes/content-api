@@ -26,20 +26,20 @@ export class ContentController {
   }
 
   @Get(':contentId')
-  async findOne(@Param('contentId') contentId: string) {
+  async findOne(@Param('contentId') contentId: number) {
     return this.contentService.findOne(contentId);
   }
 
   @Put(':contentId')
   async update(
-    @Param('contentId') contentId: string,
+    @Param('contentId') contentId: number,
     @Body() data: ContenteDTO,
   ) {
     return this.contentService.update(contentId, data);
   }
 
   @Delete(':contentId')
-  async delete(@Param('contentId') contentId: string) {
+  async delete(@Param('contentId') contentId: number) {
     return this.contentService.delete(contentId);
   }
 }

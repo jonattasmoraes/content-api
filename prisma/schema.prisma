@@ -11,7 +11,9 @@ datasource db {
 }
 
 model ApiContent {
-  id        String @id @default(cuid())
+  id        Int    @id @default(autoincrement())
+  banner    String
+  avatar    String
   aboutPage String
 
   @@map("api_content")

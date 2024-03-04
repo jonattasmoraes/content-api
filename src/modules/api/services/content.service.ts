@@ -17,7 +17,7 @@ export class ContentService {
     return await this.prisma.apiContent.findMany();
   }
 
-  async findOne(id: string) {
+  async findOne(id: number) {
     const content = await this.prisma.apiContent.findUnique({
       where: { id },
     });
@@ -29,7 +29,7 @@ export class ContentService {
     return content;
   }
 
-  async update(id: string, data: ContenteDTO) {
+  async update(id: number, data: ContenteDTO) {
     const content = await this.prisma.apiContent.findUnique({
       where: { id },
     });
@@ -44,7 +44,7 @@ export class ContentService {
     });
   }
 
-  async delete(id: string) {
+  async delete(id: number) {
     const content = await this.prisma.apiContent.findUnique({
       where: { id },
     });
