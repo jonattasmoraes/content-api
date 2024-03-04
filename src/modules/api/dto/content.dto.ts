@@ -1,5 +1,5 @@
 export type ContenteDTO = {
-  id?: number;
+  id: string;
   banner: string;
   avatar: string;
   aboutPage: string;

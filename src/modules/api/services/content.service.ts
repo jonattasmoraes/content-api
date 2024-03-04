@@ -17,9 +17,9 @@ export class ContentService {
     return await this.prisma.apiContent.findMany();
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     const content = await this.prisma.apiContent.findUnique({
-      where: { id: Number(id) },
+      where: { id },
     });
 
     if (!content) {
@@ -29,32 +29,32 @@ export class ContentService {
     return content;
   }
 
-  async update(id: number, data: ContenteDTO) {
-    const project = await this.prisma.apiContent.findUnique({
-      where: { id: Number(id) },
+  async update(id: string, data: ContenteDTO) {
+    const content = await this.prisma.apiContent.findUnique({
+      where: { id },
     });
 
-    if (!project) {
-      throw new NotFoundException('Project does not exist');
+    if (!content) {
+      throw new NotFoundException('Content does not exist');
     }
 
     return await this.prisma.apiContent.update({
-      where: { id: Number(id) },
+      where: { id },
       data,
     });
   }
 
-  async delete(id: number) {
-    const project = await this.prisma.apiContent.findUnique({
-      where: { id: Number(id) },
+  async delete(id: string) {
+    const content = await this.prisma.apiContent.findUnique({
+      where: { id },
     });
 
-    if (!project) {
-      throw new NotFoundException('Project not found');
+    if (!content) {
+      throw new NotFoundException('Content not found');
     }
 
     return await this.prisma.apiContent.delete({
-      where: { id: Number(id) },
+      where: { id },
     });
   }
 }

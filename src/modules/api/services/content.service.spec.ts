@@ -31,7 +31,7 @@ describe('ContentService', () => {
     it('should return all contents', async () => {
       const testData = [
         {
-          id: 1,
+          id: '1',
           aboutPage: 'Content 1',
           banner: 'teste.png',
           avatar: 'teste.png',
@@ -55,21 +55,21 @@ describe('ContentService', () => {
 
   describe('findOne', () => {
     it('should return content with a given id', async () => {
-      const testData = { id: 1, aboutPage: 'Content 1' };
+      const testData = { id: '1', aboutPage: 'Content 1' };
 
       prismaServiceMock.apiContent.findUnique.mockResolvedValue(testData);
 
-      const result = await contentService.findOne(1);
+      const result = await contentService.findOne('1');
 
       expect(result).toEqual(testData);
       expect(prismaServiceMock.apiContent.findUnique).toHaveBeenCalledWith({
-        where: { id: 1 },
+        where: { id: '1' },
       });
     });
 
     it('should throw NotFoundException when content is not found', async () => {
       prismaServiceMock.apiContent.findUnique.mockResolvedValue(null);
-      await expect(contentService.delete(1)).rejects.toThrowError(
+      await expect(contentService.delete('1')).rejects.toThrowError(
         NotFoundException,
       );
     });
@@ -78,14 +78,14 @@ describe('ContentService', () => {
   describe('update', () => {
     it('should update content with a given id', async () => {
       const testData = {
-        id: 1,
+        id: '1',
         aboutPage: 'Updated Content',
         banner: 'teste.png',
         avatar: 'teste.png',
       };
 
       prismaServiceMock.apiContent.findUnique.mockResolvedValue({
-        id: 1,
+        id: '1',
         banner: 'teste.png',
         avatar: 'teste.png',
         aboutPage: 'Old Content',
@@ -93,21 +93,21 @@ describe('ContentService', () => {
 
       prismaServiceMock.apiContent.update.mockResolvedValue(testData);
 
-      const result = await contentService.update(1, testData);
+      const result = await contentService.update('1', testData);
 
       expect(result).toEqual(testData);
       expect(prismaServiceMock.apiContent.findUnique).toHaveBeenCalledWith({
-        where: { id: 1 },
+        where: { id: '1' },
       });
       expect(prismaServiceMock.apiContent.update).toHaveBeenCalledWith({
-        where: { id: 1 },
+        where: { id: '1' },
         data: testData,
       });
     });
 
     it('should throw NotFoundException when content is not found', async () => {
       prismaServiceMock.apiContent.findUnique.mockResolvedValue(null);
-      await expect(contentService.delete(1)).rejects.toThrowError(
+      await expect(contentService.delete('1')).rejects.toThrowError(
         NotFoundException,
       );
     });
@@ -115,7 +115,7 @@ describe('ContentService', () => {
 
   it('should throw NotFoundException when content is not found', async () => {
     prismaServiceMock.apiContent.findUnique.mockResolvedValue(null);
-    await expect(contentService.delete(1)).rejects.toThrowError(
+    await expect(contentService.delete('1')).rejects.toThrowError(
       NotFoundException,
     );
   });
