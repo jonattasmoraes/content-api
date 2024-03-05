@@ -1,6 +1,8 @@
 -- CreateTable
 CREATE TABLE "api_content" (
     "id" TEXT NOT NULL,
+    "banner" TEXT NOT NULL,
+    "avatar" TEXT NOT NULL,
     "aboutPage" TEXT NOT NULL,
 
     CONSTRAINT "api_content_pkey" PRIMARY KEY ("id")
